@@ -23,7 +23,6 @@ RESULTS_PER_SITE = 30
 MAX_PAGE = 100
 EXPERIENCE_LEVELS = {"", "fresher", "1", "2", "3"}
 JOB_SITES = ["indeed", "linkedin", "glassdoor", "zip_recruiter"]
-ALLOWED_CORS_ORIGIN = "https://job-scrapper-hc1j.onrender.com"
 
 _cache_lock = threading.Lock()
 _search_cache = {}
@@ -247,41 +246,14 @@ def search_jobs(jobs, query, experience):
 
 
 class JobSearchHandler(BaseHTTPRequestHandler):
-    def add_cors_headers(self):
-        origin = self.headers.get("Origin", "")
-        try:
-            parsed_origin = urllib.parse.urlparse(origin)
-        except ValueError:
-            parsed_origin = None
-
-        is_local_origin = parsed_origin and (
-            parsed_origin.hostname == "localhost"
-            or parsed_origin.hostname == "127.0.0.1"
-        )
-        if origin == ALLOWED_CORS_ORIGIN or is_local_origin:
-            self.send_header("Access-Control-Allow-Origin", origin)
-            self.send_header("Vary", "Origin")
-
     def send_json(self, status, payload):
         body = json.dumps(payload).encode("utf-8")
         self.send_response(status)
         self.send_header("Content-Type", "application/json; charset=utf-8")
         self.send_header("Content-Length", str(len(body)))
         self.send_header("Cache-Control", "no-store")
-        self.add_cors_headers()
         self.end_headers()
         self.wfile.write(body)
-
-    def do_OPTIONS(self):
-        if urllib.parse.urlparse(self.path).path != "/api/jobs":
-            self.send_error(404, "Not found")
-            return
-        self.send_response(204)
-        self.add_cors_headers()
-        self.send_header("Access-Control-Allow-Methods", "GET, OPTIONS")
-        self.send_header("Access-Control-Allow-Headers", "Content-Type")
-        self.send_header("Access-Control-Max-Age", "600")
-        self.end_headers()
 
     def do_GET(self):
         parsed_url = urllib.parse.urlparse(self.path)

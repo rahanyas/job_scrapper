@@ -1,6 +1,3 @@
-const API_BASE_URL = ["localhost", "127.0.0.1"].includes(window.location.hostname)
-  ? "https://job-scrapper-hc1j.onrender.com"
-  : "";
 const form = document.querySelector("#search-form");
 const input = document.querySelector("#query");
 const locationInput = document.querySelector("#location");
@@ -179,7 +176,7 @@ async function loadResults(page) {
     });
     if (currentSearch.location) searchParams.set("location", currentSearch.location);
     if (currentSearch.experience) searchParams.set("experience", currentSearch.experience);
-    const response = await fetch(`${API_BASE_URL}/api/jobs?${searchParams}`);
+    const response = await fetch(`/api/jobs?${searchParams}`);
     const data = await response.json();
     if (!response.ok) throw new Error(data.error || "Could not load job listings.");
 
