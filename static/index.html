@@ -1,0 +1,118 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="theme-color" content="#f6f7fb">
+    <title>Find your next role | Remote Jobs</title>
+    <link rel="stylesheet" href="/styles.css">
+  </head>
+  <body>
+    <header class="topbar">
+      <a class="brand" href="/" aria-label="Remote Roles home">
+        <span class="brand-mark" aria-hidden="true">R</span>
+        <span>remote<span class="brand-accent">roles</span></span>
+      </a>
+      <span class="source-note">Thoughtful search. Real opportunities.</span>
+    </header>
+
+    <main>
+      <section class="hero" aria-labelledby="page-title">
+        <div class="hero-copy">
+          <p class="eyebrow"><span class="eyebrow-dot"></span> YOUR NEXT CHAPTER STARTS HERE</p>
+          <h1 id="page-title">Find work that<br><span>works for you.</span></h1>
+          <p class="hero-description">
+            Search listings across popular job boards. Compare opportunities
+            and follow the original application link to take the next step.
+          </p>
+        </div>
+
+        <form id="search-form" class="search-panel">
+          <label for="query">What kind of role are you looking for?</label>
+          <div class="search-controls">
+            <div class="input-wrap">
+              <svg aria-hidden="true" viewBox="0 0 24 24">
+                <circle cx="10.8" cy="10.8" r="6.8"></circle>
+                <path d="m16 16 4.2 4.2"></path>
+              </svg>
+              <input
+                id="query"
+                name="q"
+                type="search"
+                maxlength="200"
+                placeholder="e.g. Frontend Developer, Product Designer"
+                autocomplete="off"
+                required
+              >
+            </div>
+            <button type="submit">
+              <span>Search jobs</span>
+              <svg aria-hidden="true" viewBox="0 0 24 24">
+                <path d="M5 12h14m-6-6 6 6-6 6"></path>
+              </svg>
+            </button>
+          </div>
+          <div class="search-filters">
+            <div class="filter-field">
+              <label for="location">Location</label>
+              <input
+                id="location"
+                name="location"
+                class="filter-input"
+                type="text"
+                maxlength="100"
+                placeholder="City, country, or region"
+                autocomplete="address-level1"
+              >
+            </div>
+            <div class="filter-field">
+              <label for="experience">Your experience</label>
+              <select id="experience" name="experience" class="filter-select">
+                <option value="">Any experience</option>
+                <option value="fresher">Fresher (no experience)</option>
+                <option value="1">1 year</option>
+                <option value="2">2 years</option>
+                <option value="3">3+ years</option>
+              </select>
+            </div>
+          </div>
+          <p class="search-hint">Try a job title, skill, company, or keyword. Jobs without stated experience requirements are included.</p>
+        </form>
+
+        <div class="hero-decoration decoration-one" aria-hidden="true"></div>
+        <div class="hero-decoration decoration-two" aria-hidden="true"></div>
+      </section>
+
+      <section class="results-section" aria-labelledby="results-heading">
+        <div class="results-heading">
+          <div>
+            <p class="eyebrow results-eyebrow">OPPORTUNITIES</p>
+            <h2 id="results-heading">Start with a search</h2>
+          </div>
+          <p id="result-count" class="result-count" aria-live="polite"></p>
+        </div>
+        <div id="results" class="job-list" aria-live="polite">
+          <div class="empty-state">
+            <span class="empty-icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24">
+                <circle cx="10.8" cy="10.8" r="6.8"></circle>
+                <path d="m16 16 4.2 4.2"></path>
+              </svg>
+            </span>
+            <h3>Your next opportunity is out there</h3>
+            <p>Search a role or skill to discover remote jobs that match.</p>
+          </div>
+        </div>
+        <p class="attribution">
+          Search results are collected from
+          <a href="https://www.indeed.com/" target="_blank" rel="noopener noreferrer">Indeed</a>,
+          <a href="https://www.linkedin.com/jobs/" target="_blank" rel="noopener noreferrer">LinkedIn</a>,
+          <a href="https://www.glassdoor.com/Job/" target="_blank" rel="noopener noreferrer">Glassdoor</a>, and
+          <a href="https://www.ziprecruiter.com/" target="_blank" rel="noopener noreferrer">ZipRecruiter</a>.
+          Apply through each listing's original link. Contact emails appear only when found in listing data.
+        </p>
+      </section>
+    </main>
+    <script src="/app.js" defer></script>
+  </body>
+</html>
