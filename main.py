@@ -5,6 +5,7 @@ from http.server import BaseHTTPRequestHandler, ThreadingHTTPServer
 import json
 import logging
 import math
+import os
 import re
 from pathlib import Path
 import threading
@@ -345,8 +346,8 @@ def main():
     parser = argparse.ArgumentParser(
         description="Run a job search website powered by Indeed, LinkedIn, Glassdoor, and ZipRecruiter."
     )
-    parser.add_argument("--host", default="127.0.0.1", help="server host")
-    parser.add_argument("--port", type=int, default=8000, help="server port")
+    parser.add_argument("--host", default=os.environ.get("HOST", "0.0.0.0"), help="server host")
+    parser.add_argument("--port", type=int, default=int(os.environ.get("PORT", "8000")), help="server port")
     args = parser.parse_args()
 
     server = ThreadingHTTPServer((args.host, args.port), JobSearchHandler)
