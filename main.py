@@ -12,10 +12,12 @@ import threading
 import time
 import urllib.parse
 
+from dotenv import load_dotenv
 from requests.exceptions import RequestException
 
 
 BASE_DIR = Path(__file__).resolve().parent
+load_dotenv(BASE_DIR / ".env")
 CACHE_SECONDS = 15 * 60
 MAX_QUERY_LENGTH = 200
 MAX_LOCATION_LENGTH = 100
@@ -346,7 +348,7 @@ def main():
     parser = argparse.ArgumentParser(
         description="Run a job search website powered by Indeed, LinkedIn, Glassdoor, and ZipRecruiter."
     )
-    parser.add_argument("--host", default=os.environ.get("HOST", "0.0.0.0"), help="server host")
+    parser.add_argument("--host", default="0.0.0.0", help="server host")
     parser.add_argument("--port", type=int, default=int(os.environ.get("PORT", "8000")), help="server port")
     args = parser.parse_args()
 
